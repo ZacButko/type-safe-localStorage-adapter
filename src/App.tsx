@@ -1,14 +1,11 @@
-import { useState } from "react";
+import { Fruits } from "./Fruits";
 import "./styles.css";
+import { useLocalStorage } from "./useLocalStorage";
 
 const Counter = () => {
-  const initialCount =
-    (JSON.parse(window.localStorage.getItem("count") as string) as number) ?? 0;
-  const [count, setCount] = useState<number>(initialCount);
+  const { data: count, persist } = useLocalStorage<number>("count", 0);
   const increment = () => {
-    const newCount = count + 1;
-    setCount(newCount);
-    window.localStorage.setItem("count", JSON.stringify(newCount));
+    persist(count + 1);
   };
 
   return (
@@ -17,20 +14,24 @@ const Counter = () => {
       <div className="Counter-button">
         <button onClick={increment}>+</button>
       </div>
+      <div>{count % 2 ? "odd" : "even"}</div>
     </div>
   );
 };
 
 export default function App() {
   const resetApp = () => {
-    window.localStorage.removeItem("count");
+    window.localStorage.clear();
     location.reload();
   };
   return (
     <div className="App">
       <h1>localStorage Adapter</h1>
       <h2>App Data</h2>
-      <Counter />
+      <div className="Widgets">
+        <Counter />
+        <Fruits />
+      </div>
       <h2>Tools</h2>
       <button className="AppReset" onClick={resetApp}>
         Reset all app data
