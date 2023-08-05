@@ -14,7 +14,7 @@ export const Fruits = () => {
   const { data: fruit, persist } = useLocalStorage<Fruit>("fruits", fruits[0]);
 
   return (
-    <div className="Frutis">
+    <div className="Fruits">
       <div>Current Fruit: {fruit}</div>
       <div>
         <button
