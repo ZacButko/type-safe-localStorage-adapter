@@ -3,6 +3,12 @@
   text-align: center;
 }
 
+.Widgets {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .Counter {
   display: flex;
   flex-direction: row;
