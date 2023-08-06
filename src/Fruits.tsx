@@ -3,7 +3,7 @@ import { useLocalStorage } from "./useLocalStorage";
 const fruits = [
   "apple",
   "orange",
-  "strawbery",
+  "strawberry",
   "banana",
   "blueberry",
   "pomello",
@@ -20,7 +20,7 @@ const fruitsList: Array<IFruitData> = [
     description: "Orange and juicy",
   },
   {
-    name: "strawbery",
+    name: "strawberry",
     description: "Red and full of tiny seeds",
   },
   {
