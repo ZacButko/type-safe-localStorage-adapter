@@ -1,13 +1,26 @@
 import { useState } from "react";
 
-export const useLocalStorage = <T>(storageName: string, defaultValue: T) => {
+interface IStorageItem<T> {
+  version: string;
+  data: T;
+}
+
+export const useLocalStorage = <T>(
+  storageName: string,
+  defaultValue: T,
+  version = "1.0.0"
+) => {
   let initialData = defaultValue;
   try {
     const localStorageData = JSON.parse(
       window.localStorage.getItem(storageName) as string
-    ) as T;
-    if (localStorageData) {
-      initialData = localStorageData;
+    ) as IStorageItem<T>;
+    if (
+      localStorageData &&
+      localStorageData.version === version &&
+      localStorageData.data
+    ) {
+      initialData = localStorageData.data;
     }
   } catch (e) {
     console.error(`Failed to parse localStorage of storage ${storageName}`);
