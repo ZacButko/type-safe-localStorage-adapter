@@ -1,6 +1,6 @@
 import { Fruits } from "./Fruits";
 import "./styles.css";
-import { useLocalStorage } from "./useLocalStorage";
+import { resetAppData, useLocalStorage } from "./useLocalStorage";
 
 const Counter = () => {
   const { data: count, persist } = useLocalStorage<number>("count", 0);
@@ -19,9 +19,11 @@ const Counter = () => {
   );
 };
 
+export const APP_NAME = "LocalStorageApp";
+
 export default function App() {
   const resetApp = () => {
-    window.localStorage.clear();
+    resetAppData();
     location.reload();
   };
   return (
