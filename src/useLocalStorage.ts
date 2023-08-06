@@ -30,7 +30,8 @@ export const useLocalStorage = <T>(
 
   const persist = (newData: T) => {
     setData(newData);
-    window.localStorage.setItem(storageName, JSON.stringify(newData));
+    const newStorageData: IStorageItem<T> = { version: version, data: newData };
+    window.localStorage.setItem(storageName, JSON.stringify(newStorageData));
   };
 
   return { data, persist };
